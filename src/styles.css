@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+body,html{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    overflow-y: auto;
+}
+.no-scroll{
+    overflow: hidden;
+    height:100%;
+}
+
+
+.btn{
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+.btn-blue{
+    border-color: rgba(12, 86, 212, 0);
+    background-color: rgb(19, 94, 214);
+    color:#fff;
+}
+.btn-blue:hover{
+    background-color: rgba(102, 161, 255, 0.89);
+}
+.btn-block{
+    display: block;
+    padding: 18px 20px;
+    font-size: 22px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}

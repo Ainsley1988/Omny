@@ -1,0 +1,107 @@
+<div id="omny-modal" *ngIf="isVisiable " class="modal-overlay" (click)="closOverlayOnClick($event)">
+
+<div class="modal-content"  [ngClass]="modalCss">
+    <div class="modal-header">
+        <h2>{{modalTitle}}</h2>
+
+        <button (click)="closeModal()" class="btn-close">&times;</button>
+    </div>
+    
+    <div class=""modal-body>
+        <ng-container [ngSwitch]="modalScenario">
+            <ng-container *ngSwitchCase="'editCardComponent'">
+              <app-edit-card [data]="modalData" (submit)="onFormSubmit()"></app-edit-card>
+            </ng-container>
+            <ng-container *ngSwitchCase="'cardComparison'">
+<app-transfer-balance [data]="modalData" (submit)="onFormSubmit()"></app-transfer-balance>
+            </ng-container>
+            </ng-container>
+        <!-- <div class="cardsLoading">
+            <div class="change-card">
+                <div class="changebox changebox-black">
+                   <div>
+<div class="pill">
+    <p class="nameText">
+        {{modalData.drag.cardname}}
+    </p>
+
+</div>
+                    
+                   </div> 
+                  <div class="balance">
+                    <p>Your balance</p>
+                    <div class="dollars">{{modalData.drag.getBalance() | currency:'USD':'symbol'}}</div>
+                    </div>
+                    <div>OMNY Student</div>
+                  <div class="pinner">
+                    <div>
+                        <p>Serial number</p>
+                        <p>{{modalData.drag.getSerialnumber() | date: 'MM/yy'}}</p>
+                        
+                    </div>
+                    <div>
+                        <p>Valid thru</p>
+                        {{modalData.drag.getExpirationDate() | date:'shortDate'}}
+
+                    </div>
+                    </div>
+                
+                </div>
+                
+                
+            </div>
+            <div class="line-container">
+<div class="loading-line"></div>
+            </div>
+            <div class="change-card">
+                <div class="changebox changebox-purple">
+                    <div>
+
+                        <div class="pill">
+                            <p class="nameText">{{modalData.target.cardname}}</p>
+                        </div>
+                    </div>
+                   
+                    <div class="balance">
+                        <p>Their balance</p>
+                        <div class="dollars">{{modalData.target.getBalance() | currency:'USD':'symbol'}}</div>
+                    </div>
+                    <div>OMNY Reduced</div>
+                    <div class="pinner">
+                        <div>
+                            <p>Serial number</p>
+                            <p>{{modalData.target.getSerialnumber() | date:'shortDate'}}</p>
+                        </div>
+                        <div>
+                            <p>Valid thru</p>
+                            <p>{{modalData.target.getExpirationDate() | date:'shortDate'}}</p>
+                        </div>
+                    </div>
+                   
+                </div>
+                
+            </div>
+            
+           
+
+        </div>
+
+        <div class=" ">
+            <form (ngSubmit)="submitTransfer($event)"  #form="ngForm">
+                <div class="tranferContainer">
+              <input type="number" id="amount" class="changeMe" [(ngModel)]="transferAmount" name="amount" required />
+              <div *ngIf="form.controls['amount']?.invalid && form.controls['amount']?.touched" class="error-message">
+                Amount is required.
+              </div>
+          
+              <button type="submit" class="btn btn-blue btn-block">Send</button>
+              </div>
+            </form>
+          </div> -->
+
+
+    </div>
+
+</div>
+
+</div>

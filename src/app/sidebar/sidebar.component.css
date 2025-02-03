@@ -1,0 +1,145 @@
+.sidebar{
+    width: 100%;
+    margin-top: 60px;
+    display: block;
+    
+    height: 54px;
+    padding: 10px 0px 6px;
+    position: fixed;
+    background-color: #212A37;
+    z-index: 10;
+    display:flex;
+    align-items: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.sidebar ul{
+
+}
+.sidebar li{
+    list-style: none;
+    margin:10px 20px;
+    display: inline-block;
+
+}
+
+.sidebar li a{
+    color: #b7b3b3;
+    font-size: 17px;
+    padding: 9px 12px;
+    text-decoration: none;
+    width: 100%;
+    border-radius: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.sidebar li a span{
+    line-height: 2;
+}
+.sidebar li a:hover{
+    background-color:#000;
+}
+.send-container{
+    margin-left: auto;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    
+}
+.send-B228{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: #71d303;
+    cursor: pointer;
+    z-index: 1000;
+    position: relative;
+    color: #fff;
+    font-size: 16px;
+    padding: 5px 8px 4px;
+    font-weight: 400;
+}
+.send-B228:hover{
+background-color:#497d0edd;
+}
+.send-far228{
+    background-color: #000;
+    border-radius: 30px;
+    min-width: 146px;
+    max-width: 100%;
+    padding: 3px 11px 3px 38px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.send-far228 .sendM{
+    margin-left:-30px;
+    transition: margin-left 0.2s ease-in;
+
+}
+.send-far228:hover{
+    padding: 3px 11px 3px 20px;
+}
+.send-far228:hover .sendM{
+    margin-left:-4px;
+    transition: margin-left 0.2s ease-in;
+    
+}
+
+.sendM{
+    border-radius: 50%;
+    height:40px;
+    width:40px;
+    float:left;
+    background-color:#000;
+    position: relative;
+    padding:4px;
+    flex-shrink: 0;
+}
+.sendM:hover{
+    margin-left:-3px;
+}
+.send-img{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+.send-r228{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.svgIcon{
+    height:32px;
+    width:32px;
+    
+}
+.wall-1 {
+    fill: #b7b3b3;
+    stroke: #b7b3b3;
+    stroke-width: .5px;
+  }
+
+  .wall-1, .wall-2 {
+    stroke-miterlimit: 10;
+    
+  }
+
+  .wall-2 {
+    fill: transparent;
+    stroke: #b7b3b3;
+  }
+  .wall-3{
+
+fill: #212a37;
+    stroke: #212a37;
+  }
+  

@@ -1,0 +1,95 @@
+
+
+
+<div class="container containerB">
+    <div class="row">
+       
+    </div>
+    <div class="column">
+       
+        <div class="welcome" *ngFor="let userbg of userCard">
+            <div  class="wel-container">
+                <h3>Hello {{userbg.fullname}}  welcome to OMNY</h3>
+                <p>You can now manage your OMNY cards & payment settings, update Wallet & Pay settings, and view recent transactions, all in one place</p>
+            </div>
+        </div>
+        <h2>OMNY Cards</h2> 
+        <div class=" cards-container" id="cardCan">
+            <div *ngFor="let card of dummyCards" class="cards" draggable="true"  (dragstart)="onDragStart($event, card)" (dragover)="onDragOver($event,card)" (drop)="onDrop($event)">
+                <a [routerLink]="['/card', card.getCardId(),'OMNY']"><div class="omny-card" 
+            >
+                <div  >
+                <div [ngClass]="{
+                    'student':card.cardtype=='Student',
+                    'default':card.cardtype=='Default',
+                    'reduce':card.cardtype=='Reduced',
+                    'custom':card.cardtype=='Custom'
+                }"  [ngStyle]="createBackgroundStyle(card)">
+                <div><img  *ngIf="card.cardtype == 'Student'" src="mta.webp" height="20"/>
+                    <img src="desktop.svg" height="20"/>
+                </div>
+                <div *ngIf="card.cardtype == 'Student'">
+                    <p>Your tap counts</p>
+                </div>
+                <div>
+               
+                </div>
+ 
+                </div>
+                <div  class="studentTwo"  *ngIf="card.cardtype == 'Student'" >
+                    <p>Student</p>
+                </div>
+               
+                
+    
+                </div>
+                
+    
+                
+            </div></a> 
+            
+            <div class="card-info" >
+                <h2 *ngIf="!changeName" (click)="editModal(card)">{{card.cardname}}</h2>
+                <div *ngIf="changeName"><input [(ngModel)]="newName" 
+                    placeholder="Enter new name" 
+                    (keydown.enter)="updateCardname(card.getSerialnumber(), newName)" /></div>
+                    <div *ngIf="card.tapDifference != 0"><p >{{card.tapDifference}} taps to free</p></div>
+                    
+                    <p *ngIf="card.tapDifference == 0 && card.travel">Free</p>
+                <p class="balance">{{card.getBalance() | currency:'USD':'symbol' }}</p>
+                <!-- <p class="expiration">Expires: {{card.getExpirationDate() | date:'shortDate'}}</p> -->
+            </div> 
+            </div>
+        </div>
+       
+
+        <h2>Payment </h2>
+        <div *ngFor="let credit of dummyCredit" class="debitCards"  draggable="true" >
+            <a [routerLink]="['/card', credit.getCardId(),'OMNY']" >
+                <div  class="deb-Container">
+                    <div class="pCard">
+
+                    </div>
+                    <div class="db-tint">
+                        <h3 class="db-color">{{credit.getCardType()}} ••••  {{credit.getLastFour()}}</h3>
+                       
+                        <p>{{credit.getExpirationDate() |date:"MM/YY"}}</p>
+                        <span>{{credit.tapDifference}} taps to free</span>
+                        <span *ngIf="credit.tapDifference==0 && credit.travel">Free</span>
+                         <span *ngIf="credit.getBlockCard()">blocked</span>
+                              <p *ngIf="credit.getBalance()">Fare owned: {{credit.getBalance() | currency:'USD':'symbol' }}</p>
+        
+                    </div>
+
+                </div>
+            
+           
+            
+        </a>
+                </div>
+
+        <h2>Recent Trips</h2>
+
+    </div>
+   
+</div>
