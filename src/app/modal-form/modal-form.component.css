@@ -227,3 +227,9 @@ top:300px;
   display: block;
   margin-bottom: 10px; /* Adds spacing between elements */
 }
+
+/* transfer funds*/
+.moneyTransfer{
+    width:540px;
+top:200px;
+}

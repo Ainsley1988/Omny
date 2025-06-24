@@ -9,7 +9,23 @@ body,html{
     overflow: hidden;
     height:100%;
 }
+.container {
+    display:flex;
+    width: 100%;
+width:1200px;
+margin:0 auto;
 
+}
+
+.container .column{
+  
+   width: 100%;
+   padding:10px 50px;
+    
+}
+.containerB{
+    margin-top:155px;
+}
 
 .btn{
     padding: 10px;

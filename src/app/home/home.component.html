@@ -15,7 +15,7 @@
         </div>
         <h2>OMNY Cards</h2> 
         <div class=" cards-container" id="cardCan">
-            <div *ngFor="let card of dummyCards" class="cards" draggable="true"  (dragstart)="onDragStart($event, card)" (dragover)="onDragOver($event,card)" (drop)="onDrop($event)">
+            <div *ngFor="let card of cards" class="cards" draggable="true"  (dragstart)="onDragStart($event, card)" (dragover)="onDragOver($event,card)" (drop)="onDrop($event)">
                 <a [routerLink]="['/card', card.getCardId(),'OMNY']"><div class="omny-card" 
             >
                 <div  >
@@ -64,20 +64,22 @@
        
 
         <h2>Payment </h2>
-        <div *ngFor="let credit of dummyCredit" class="debitCards"  draggable="true" >
-            <a [routerLink]="['/card', credit.getCardId(),'OMNY']" >
+        <div *ngFor="let pay of credit" class="debitCards"  draggable="true" >
+            <a [routerLink]="['/card', pay.getCardId(),'OMNY']" >
                 <div  class="deb-Container">
                     <div class="pCard">
-
+                     <div style="background:url('mc-cards.png');height:100px;width:300px;">
+<div class="pCard-nx"></div>
+                     </div>
                     </div>
                     <div class="db-tint">
-                        <h3 class="db-color">{{credit.getCardType()}} ••••  {{credit.getLastFour()}}</h3>
+                        <h3 class="db-color">{{pay.getCardType()}} ••••  {{pay.getLastFour()}}</h3>
                        
-                        <p>{{credit.getExpirationDate() |date:"MM/YY"}}</p>
-                        <span>{{credit.tapDifference}} taps to free</span>
-                        <span *ngIf="credit.tapDifference==0 && credit.travel">Free</span>
-                         <span *ngIf="credit.getBlockCard()">blocked</span>
-                              <p *ngIf="credit.getBalance()">Fare owned: {{credit.getBalance() | currency:'USD':'symbol' }}</p>
+                        <p>{{pay.getExpirationDate() |date:"MM/YY"}}</p>
+                        <span>{{pay.tapDifference}} taps to free</span>
+                        <span *ngIf="pay.tapDifference==0 && pay.travel">Free</span>
+                         <span *ngIf="pay.getBlockCard()">blocked</span>
+                              <p *ngIf="pay.getBalance()">Fare owned: {{pay.getBalance() | currency:'USD':'symbol' }}</p>
         
                     </div>
 

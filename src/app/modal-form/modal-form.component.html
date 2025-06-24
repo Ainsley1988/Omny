@@ -15,6 +15,10 @@
             <ng-container *ngSwitchCase="'cardComparison'">
 <app-transfer-balance [data]="modalData" (submit)="onFormSubmit()"></app-transfer-balance>
             </ng-container>
+            <ng-container *ngSwitchCase="'sendMoneyComponent'">
+                <app-money-card [data]="modalData" (submit)="onFormSubmit()"></app-money-card>
+            </ng-container>
+        
             </ng-container>
         <!-- <div class="cardsLoading">
             <div class="change-card">

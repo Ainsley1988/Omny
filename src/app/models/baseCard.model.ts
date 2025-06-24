@@ -49,7 +49,7 @@ public getCardId():number{
     }
     public getTapDifference():number{
     
-       console.warn("this is the tap count",this.cardId);
+       
         return rideTracker.getInstance().getTapDifference(this.cardId);
     }
 //     public setAdminBlock(adminBlock:boolean):void{

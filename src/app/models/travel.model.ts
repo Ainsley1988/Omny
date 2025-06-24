@@ -39,7 +39,7 @@ if(card instanceof Card){
     console.log("Omny card has been added", card.getCardId())
 
 }else if(card instanceof PaymentCards){
-    this.debitcard=card;
+    this.debitcard = card;
 
     console.log("Debit card has been added", card.getCardId());
 
@@ -94,7 +94,7 @@ return this.routeNumber
             this._taps = tapCount;
         }
         else{
-            console.log("No card is Attacked",this.Omny);
+            console.log("No card is Attached",this.Omny);
         }
 
         

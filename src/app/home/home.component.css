@@ -1,21 +1,5 @@
 
-.container {
-    display:flex;
-    width: 100%;
-width:1200px;
-margin:0 auto;
 
-}
-
-.container .column{
-  
-   width: 100%;
-   padding:10px 50px;
-    
-}
-.containerB{
-    margin-top:155px;
-}
 /* welcome page */
 .welcome{
     border-radius: 30px;
@@ -194,8 +178,54 @@ text-decoration: none;
     height: 221px;
     width: 317px;
     background-color: #fff;
-    display: inline-block;
+    display: flex;
     background-color: whitesmoke;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+.pCard::after{
+    content: "";
+    position: absolute;
+    width:40px;
+    height: 40px;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 12px;
+    border-left:2px solid rgba(16,92,213,1);
+    border-top:2px solid rgba(16,92,213,1);
+}
+.pCard:before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-bottom-right-radius: 12px;
+    border-right:2px solid rgba(16,92,213,1);
+    border-bottom:2px solid  rgba(16,92,213,1);
+    bottom: 0;
+    right: 0;
+}
+.pCard-nx{
+background-color: #5989db;
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+height: 145px;
+width: 211px;
+border-radius: 10px;
+margin: 0 auto;
+position: relative;
+top:-20px;
+transition: ease-in 0.5s;
+
+
+}
+.pCard-nx:hover{
+    box-shadow: -3px 6px 22px -4px rgba(28,26,26,0.72);
+-webkit-box-shadow: -3px 6px 22px -4px rgba(28,26,26,0.72);
+-moz-box-shadow: -3px 6px 22px -4px rgba(28,26,26,0.72);
 }
 .deb-Container{
     display: flex;

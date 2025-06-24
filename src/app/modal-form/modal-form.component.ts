@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule for this com
 import { ModalService } from '../modal.service';
 import { EditCardComponent } from './EditCardComponent';
 import { transferCardCompoonent } from "./transferCardComponent";
+import { SendMoneyComponent } from './SendMoneyComponent';
 
 
 
@@ -12,7 +13,7 @@ import { transferCardCompoonent } from "./transferCardComponent";
 @Component({
   selector: 'app-modal-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, EditCardComponent, transferCardCompoonent],
+  imports: [CommonModule, FormsModule, EditCardComponent, transferCardCompoonent,SendMoneyComponent],
   templateUrl: './modal-form.component.html',
   styleUrl: './modal-form.component.css'
 })
@@ -23,7 +24,7 @@ export class ModalFormComponent implements OnInit {
 @Input() modalContent: string = " ";
 @Input() isVisiable = false;//status of the modal
 @Input() modalData:any = null;
-@Input() modalScenario: 'default' | 'cardComparison' | 'editCardComponent' | 'infoDisplay' = 'default';// modal scenario
+@Input() modalScenario: 'default' | 'cardComparison' | 'editCardComponent' | 'sendMoneyComponent' |'infoDisplay' = 'default';// modal scenario
 @Input() modalCss:string = "default";
 @Output() close = new EventEmitter<void>();  // Correctly typed EventEmitter
 
@@ -85,6 +86,10 @@ loadScenarioComponent(){
     case 'editCardComponent'://scenario when editing the name of card
       component = EditCardComponent;// reference to the edit card component
       this.modalCss= "EditMode";
+      break;
+    case 'sendMoneyComponent':
+      component = SendMoneyComponent;
+      this.modalCss="moneyTransfer";
       
       break;
     

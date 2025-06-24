@@ -5,28 +5,40 @@ export class FreeRideManager{
     private activeRequest:boolean;
     private  amount:number;
     private message:string;
-    private fromUserID:number | null;
-    private toUserid:number | null;
+    private fromUserID:number;
+    private toUserid:number;
     private cardId:number | null;
     private blocked:boolean | null;
 
 
 constructor(active:boolean,blocked:boolean,amount:number,message:string,fromUserid:number,toUserid:number,cardid:number){
-    this.activeRequest =active;
-    this.blocked =blocked;
-    this.amount = amount;
-    this.message = message;
-    this.fromUserID= fromUserid;
-    this.toUserid= toUserid;
+    this.activeRequest =active;// if request is active
+    this.blocked =blocked; // request from user is blocked
+    this.amount = amount; // amount asked
+    this.message = message; //message
+    this.fromUserID= fromUserid; // request from
+    this.toUserid= toUserid; // request being sent to
     this.cardId = cardid;
 
     
 }
 
+public getFromUser():number{
+    return this.fromUserID;
+}
+
+public getToUser():number{
+    return this.toUserid;
+}
+
+public getAmount():number{
+    return this.amount;
+}
+
 
 
     //request funds from friend 
-    public requestFunds(friend:User,me:User,amount:number,card:Card):boolean{
+    public requestFunds(fromFriend:number,toFriend:number,amount:number,card:Card):boolean{
         if(this.activeRequest){// if there is already a request
 console.error("There is already an active request");
 return false;
@@ -43,19 +55,19 @@ return false;
        
       this.activeRequest =true;
       this.amount = amount;
-      this.cardId = card.getCardId();
-      this.fromUserID = me.getUserID();
-      this.toUserid = friend.getUserID();
-      this.message =this.sendMessage(friend,true);
+      this.cardId = card.getSerialnumber();
+      this.fromUserID = fromFriend;
+      this.toUserid = toFriend;
+      this.message = this.sendMessage(toFriend,true);
        
                return  true;
        
            }
        //send message based on the request
-    public sendMessage(friend:User,sending:boolean):string{
+    public sendMessage(friend:number,sending:boolean):string{
 
             if(sending){
-                return `Hello ${friend.getFullname()}, you have a request for $${this.amount} from  Please approve or deny the request.`;
+                return `Hello ${friend}, you have a request for $${this.amount} from  Please approve or deny the request.`;
             } else{
                 return "";
 
@@ -82,8 +94,7 @@ return false;
             this.activeRequest=false;
             this.amount=0;
             this.message="";
-            this.fromUserID=0;
-            this.toUserid=0;
+           
            }
        
            

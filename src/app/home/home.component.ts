@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef,Component, OnInit, ViewChild,OnDestroy } from '@angular/core';
 import {Card} from '../models/cards.model';
 import {User} from '../models/user.model'
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 import { rideTracker } from '../models/rideTracker..model';
 import { ModalService } from '../modal.service';
 import { dummyManager } from '../models/dummyManager';
+import  {Subscription} from "rxjs";
 
 
 
@@ -20,26 +21,88 @@ import { dummyManager } from '../models/dummyManager';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
- constructor(private modalService: ModalService){}
+export class HomeComponent implements OnInit, OnDestroy {
+
+ constructor(private modalService: ModalService,private dummyService: dummyManager){}
+ credit:any[]=[];
+ cards:any[]=[];//hold the card data
+ userCard:any[] =[];// holds user card
+ rides:Travel[]=[];
+ currentUser!:User;
+ log:any[]=[];
+ dataReady: boolean = false;
+ private modalSub?: Subscription;
+ ngOnInit(): void {
+//get the current user
+  this.currentUser = this.dummyService.getCurrentUser();
+// get the current cards
+   this.dummyService.getCards$().subscribe(cards =>{
+    this.cards = cards
+   })
+
+   this.dummyService.getPaymentCard$().subscribe(pay =>{
+    this.credit = pay
+  });
+
+//get the list of travel cards
+  this.dummyService.getTravel$().subscribe(move =>{
+    this.rides = move
+  });
+
   
-  // @ViewChild(ModalFormComponent) modalComponent : ModalFormComponent | undefined;
 
-dummyCards:Card[] =[
-
-
-new Card(23839234,30,false,new Date('2024-12-31'),"Student","Allison Sweeney",true),
-new Card(38992939,35,true,new Date('2024-12-31'),"Default","Lisa Tepes",true),
-new Card(68992939,35,true,new Date('2024-12-31'),"Default","Jason Miller",true),
-new Card(48992939,35,true,new Date('2024-12-31'),"Custom","Charlie Thompson",true),
+  if (!this.dummyService.simulationRan) {
+    this.simulateDemoRides();
+    this.dummyService.simulationRan = true;
+    
+  }
+  
 
 
 
-];
-dummyTravel:Travel[]=[
-  new Travel("BX12", new Date('2024-12-31'), 1,3, false),
-  new Travel("BX15", new Date('2024-12-31'),1, 12, true),
-];
+
+ 
+ 
+ 
+   const rv = rideTracker.getInstance();
+   this.userCard =[{fullname:'Ainsley'}]
+   this.cards[3].setCustomImage({image:'stranger.jpg',x:'321',y:'159',size:'cover'})
+    
+   
+  
+   
+   
+   
+  
+
+
+   
+   this.modalSub = this.modalService.updatedData$.subscribe((updatedData) => {
+    this.updateCardname(updatedData.serialnumber, updatedData.cardName);
+  });
+
+ 
+ }
+ 
+ simulateDemoRides(){
+  //add card and to ride to similute 
+this.dummyService.addTravel(this.cards[0],this.rides[0]);
+this.dummyService.addTravel(this.credit[2],this.rides[1]);
+//similate the omny taps 
+this.dummyService.processTravelOmnyTaps(this.rides[0]);
+this.dummyService.processTravelOmnyTaps(this.rides[1]);
+//update the tap count
+this.dummyService.updateTapDifferences();
+}
+ ngOnDestroy(): void {
+  if (this.modalSub) {
+    this.modalSub.unsubscribe();
+    console.log('Unsubscribed from modalService.updatedData$');
+  }
+}
+  
+
+
 //dragged item functions
 draggedCard: Card | null = null;
 targetCard:Card | null =null;
@@ -210,62 +273,8 @@ this.parentElement = null;
   }
 
 
-  dummyCredit:PaymentCards[] =[
-
-
-    new PaymentCards(new Date('2024-12-31'),"Visa",2839,"Mellia Hart",false),
-    new PaymentCards(new Date('2024-12-31'),"Visa",2839,"Mellia Hart",false),
-    new PaymentCards(new Date('2024-12-31'),"Visa",2839,"Mellia Hart",false),
-    new PaymentCards(new Date('2024-12-31'),"Visa",3839,"Mellia Hart",false),
-    new PaymentCards(new Date('2024-12-31'),"Visa",4839,"Mellia Hart",false)
-    
-    
-    
-    
-    ];
-
-  credit:any[]=[];
-  cards:any[]=[];//hold the card data
-  userCard:any[] =[];// holds user card
-  rides:any[]=[];
-  log:any[]=[];
   
-  ngOnInit(): void {
-
-    this.cards =this.dummyCards;//initialize card array with dummy data
-    this.credit = this.dummyCredit;
-    this.rides = this.dummyTravel;
-    this.rides[0].addCard(this.cards[3])
-    this.rides[0].processOmnyTaps();
-    this.rides[1].addCard(this.credit[1]);
-    this.rides[1].processOmnyTaps();
-   
-  const rv = rideTracker.getInstance();
-    console.log("list of ride by card", rv.getRideByCardid(this.credit[1]));
-    this.userCard =[{fullname:'Ainsley'}]
-    this.cards[3].setCustomImage({image:'stranger.jpg',x:'321',y:'159',size:'cover'})
-    console.log("the card is blocked",this.cards[3].getCustomImage().image);
-    
-   
-    
-    // console.log("get the tap list",this.credit[1].travel.getDebitCardTaps(3839));
-    
-    this.cards.forEach(card => {
-      card.tapDifference = card.getTapDifference(); // Add a tapDifference property
-  });
-  this.credit.forEach(cred =>{
-    cred.tapDifference= cred.getTapDifference();
-  });
-
-    
-  this.modalService.updatedData$.subscribe((updatedData) => {
-    console.log("the return is working",updatedData.cardName);
-    this.updateCardname(updatedData.serialnumber,updatedData.cardName);
-    
-    
-   
-  });
-  }
+  
   //create background style base on the card
 createBackgroundStyle(cards:Card){
   return {
@@ -285,13 +294,13 @@ Endme(){
 // update cardname
 updateCardname(serialnumber:number,newName:string): void{
 
-  const card = this.dummyCards.find(card => card.getSerialnumber() === serialnumber);
+  
 
 
-  for(let i=0; i < this.dummyCards.length;i++){
-    if( serialnumber === this.dummyCards[i].getSerialnumber()){
+  for(let i=0; i < this.cards.length;i++){
+    if( serialnumber === this.cards[i].getSerialnumber()){
 
-    this.dummyCards[i].setCardname(newName);//update the card 
+    this.cards[i].setCardname(newName);//update the card 
 
     break;
 
@@ -320,12 +329,12 @@ captureCard(){
 addCard(newcard:any[]):void{
 
 
-  for(let j=0; j < this.dummyCards.length;j++){
+  for(let j=0; j < this.cards.length;j++){
 
 
-    let exist = this.dummyCards.some(card => card.getSerialnumber() == newcard[j].serialnumber)// check if the card already exist in the current list
+    let exist = this.cards.some(card => card.getSerialnumber() == newcard[j].serialnumber)// check if the card already exist in the current list
     if( !exist){ 
-      this.dummyCards.push(newcard[j])//pushed the new card to the list
+      this.cards.push(newcard[j])//pushed the new card to the list
 
     }
   

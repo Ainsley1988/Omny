@@ -36,16 +36,19 @@
                     <div class="send-container">
                         <div class="send-far228">
                             <div class="sendM">
-<button class="send-B228">$</button>
+<button class="send-B228" (click)="askForMoney()">$</button>
                             </div>
-                        <div class="sendM" *ngFor="let send of dummyUsers">
+                        <div class="sendM" *ngFor="let send of freeRides" [ngClass]="{'send-active':send.activeRequest}">
 
-                            <div class="send-r228">
-                            <img class="send-img" src="{{send.profileImg}}"/>
+                            <div class="send-r228" (mouseenter)="isHovered = true" (mousemove)="updateBoxPosition($event)"  (mouseleave)="isHovered = false">
+                            <!-- <img class="send-img" src="{{send.requester.getProfileimg()}}"/> -->
                             </div>
                                                 </div>
                                             </div>
 
                     </div>
                     
+</div>
+<div id="moneyBox" *ngIf="isHovered" class="money-box" >
+    The div appears on hover
 </div>

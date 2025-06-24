@@ -1,0 +1,77 @@
+.tp-circle{
+    border-radius: 50%;
+    height:30px;
+    width:30px;
+    background-color: whitesmoke;
+    position: relative;
+    left:-45px;
+    top:-20px;
+}
+.tp-thread{
+    max-width: 600px;
+    margin: 2rem 1rem;
+}
+.tp-tLine{
+    position:relative;
+    padding-left: 20px;
+    border-left: 2px solid #ccc;
+    padding-bottom: 40px;
+}
+/* .tp-tLine::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 20px;
+    height: 100%;
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0 0 0 10px;
+} */
+.content {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 6px;
+  }
+  
+  .replies {
+    margin-left: 20px;
+  }
+
+  .tp-Crd3829{
+    position: relative;
+    margin-top: 10px;
+    padding: 20px;
+  display: flex;
+  flex-direction: row;
+    
+
+  }
+  .tp-Anr492{
+    border-radius:30px;
+    border:1px solid whitesmoke;
+  }
+  .six{
+    background-color: rgb(11, 136, 28);
+  }
+  
+  .two{
+background-color:rgb(202, 66, 66);
+
+  }
+
+  .OMcards{
+display:inline-block;
+   width:300px;
+   flex-grow: 3;
+  }
+  .OMcont{
+    flex-grow: 5;
+    
+  }
+  .OMcod822{
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width:300px;
+    height:400px;
+    border-radius: 20px;
+  }

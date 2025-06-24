@@ -1,4 +1,57 @@
-# MyOmny
+# 🚍 OMNY Fare System Simulator (Angular)
+
+A web-based simulation of NYC’s OMNY transit fare system, built using **Angular** and **TypeScript**.  
+This project simulates card taps, fare deduction, balance checks, and 7-day fare capping rules in a fully interactive browser UI.
+
+---
+
+## 📸 Screenshot
+
+![App Screenshot](public/screenshot.png)
+
+> Add a screenshot of the main interface or tap history panel. Place it in `screenshot/`.
+
+---
+
+## 🎥 Demo Video
+
+[▶️ Watch the demo(public/screenshot.png)](https://youtu.be/your-video-id)
+
+---
+
+## ✨ Features
+
+- 💳 **Card Management**: OmnyCard and DebitCard types with unique behaviors
+- 🧾 **Tap Tracking**: Time-stamped entries with location and source type
+- 💸 **Fare Deduction**: Tap triggers real-time balance updates
+- 🧠 **7-Day Fare Cap**: Free rides automatically apply after 12 taps in a 7-day window
+- 📊 **Transaction History**: View past activities by card and date
+- 🧪 Built with Angular 8+ using modular components and services
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend**: Angular 8+, TypeScript, HTML/CSS
+- **State Management**: Local service-based (optional upgrade to NgRx)
+- **UI**: Material Design (optional), CSS Grid/Flexbox for layout
+
+---
+
+## 🚀 Getting Started
+
+### 🔧 Prerequisites
+
+- Node.js 18+ and npm
+- Angular CLI
+
+### ▶️ Run Locally
+
+```bash
+git clone https://github.com/your-username/omny-angular.git
+cd omny-angular
+npm install
+ng serve
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
 
