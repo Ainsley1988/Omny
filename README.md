@@ -15,7 +15,7 @@ This project simulates card taps, fare deduction, balance checks, and 7-day fare
 
 ## 🎥 Demo Video
 
-[▶️ Watch the demo(public/screenshot.png)](https://youtu.be/your-video-id)
+[![Watch the demo on YouTube](public/screenshot.png)](https://youtu.be/your-video-id)
 
 ---
 
